@@ -11,24 +11,20 @@ if (
   navigator.userAgent.includes("like Mac")
 ) {
   console.log("mobile-touching event"); 
-  window.addEventListener("touchstart",touchStart);
-  window.addEventListener("touchend",touchEnd);
+  window.addEventListener("touchstart",function(event){
+    touchX=event.screenX;
+    touchY=event.screenY;
+  });
+  window.addEventListener("touchend",function(event){
+    touchEndX=event.screenX;
+    touchEndY=event.screenY;
+    swipeDetector();
+  });
 } else {
   console.log("desktop-wheel scrolling"); 
   //for desktop if wheel is scrolled up-previous post and if scrolled down-next post
   window.addEventListener("wheel", directionDetector);
 }
-
-function touchStart(event){
-  touchX=event.screenX;
-  touchY=event.screenY;
-};
-
-function touchEnd(event){
-  touchEndX=event.screenX;
-  touchEndY=event.screenY;
-  swipeDetector();
-};
 
 function swipeDetector(){
   if(touchEndY<touchY){
