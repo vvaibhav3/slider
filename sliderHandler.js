@@ -32,7 +32,8 @@ function swipeDetector(){
     postNo <= 0 ? (postNo = posts.length - 1) : postNo--; // decreament pointer to previous post if values is not negative
     nextPost(document.getElementById("slider-data"));
   }
-  else if(touchEndY>touchY){
+  
+  if(touchEndY>touchY){
     console.log("swipe-up");
     postNo++; // increament pointer to next post
     nextPost(document.getElementById("slider-data"));
