@@ -14,26 +14,31 @@ if (
   window.addEventListener("touchstart",function(event){
     touchX=event.touches[0].clientX;
     touchY=event.touches[0].clientY;
-  });
-  window.addEventListener("touchend",function(event){
+  },false);
+  window.addEventListener("touchmove",function(event){
     touchEndX=event.touches[0].clientX;
     touchEndY=event.touches[0].clientY;
-    swipeDetector();
-  });
+
+    if(touchEndY==null){
+      return;
+    }
+
+    const newY=Math.abs(touchEndY-touchY);
+    swipeDetector(newY);
+  },false);
 } else {
   console.log("desktop-wheel scrolling"); 
   //for desktop if wheel is scrolled up-previous post and if scrolled down-next post
-  window.addEventListener("wheel", directionDetector);
+  window.addEventListener("wheel", directionDetector,false);
 }
 
-function swipeDetector(){
-  if(touchEndY<touchY){
+function swipeDetector(value){
+  if(value<0){
     console.log("swipe-down");
     postNo <= 0 ? (postNo = posts.length - 1) : postNo--; // decreament pointer to previous post if values is not negative
     nextPost(document.getElementById("slider-data"));
   }
-
-  if(touchEndY>touchY){
+  else{
     console.log("swipe-up");
     postNo++; // increament pointer to next post
     nextPost(document.getElementById("slider-data"));
