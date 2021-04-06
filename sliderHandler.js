@@ -12,12 +12,12 @@ if (
 ) {
   console.log("mobile-touching event"); 
   window.addEventListener("touchstart",function(event){
-    touchX=event.screenX;
-    touchY=event.screenY;
+    touchX=event.touches[0].clientX;
+    touchY=event.touches[0].clientY;
   });
   window.addEventListener("touchend",function(event){
-    touchEndX=event.screenX;
-    touchEndY=event.screenY;
+    touchEndX=event.touches[0].clientX;
+    touchEndY=event.touches[0].clientY;
     swipeDetector();
   });
 } else {
@@ -32,7 +32,7 @@ function swipeDetector(){
     postNo <= 0 ? (postNo = posts.length - 1) : postNo--; // decreament pointer to previous post if values is not negative
     nextPost(document.getElementById("slider-data"));
   }
-  
+
   if(touchEndY>touchY){
     console.log("swipe-up");
     postNo++; // increament pointer to next post
