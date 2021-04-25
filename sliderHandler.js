@@ -21,11 +21,15 @@ if (
     function (event) {
       touchX = event.touches[0].clientX;
       touchY = event.touches[0].clientY;
+      event.preventDefault();
     },
     false
   );
+  window.addEventListener("touchmove",function(event){
+    event.preventDefault();
+  },false);
   window.addEventListener(
-    "touchmove",
+    "touchend",
     function (event) {
       touchEndX = event.touches[0].clientX;
       touchEndY = event.touches[0].clientY;
@@ -33,9 +37,9 @@ if (
       if (touchEndX == null) {
         return;
       }
-
       const newX = Math.abs(touchEndX - touchX);
       swipeDetector(newX);
+      event.preventDefault();
     },
     false
   );
@@ -48,11 +52,11 @@ if (
 
 function swipeDetector(value) {
   if (value < 0) {
-    console.log("swipe-down");
+    console.log("swipe-left");
     postNo <= 0 ? (postNo = posts.length - 1) : postNo--; // decreament pointer to previous post if values is not negative
     nextPost(document.getElementById("slider-data"), "anmLeft");
   } else {
-    console.log("swipe-up");
+    console.log("swipe-right");
     postNo++; // increament pointer to next post
     nextPost(document.getElementById("slider-data"), "anmRight");
   }
