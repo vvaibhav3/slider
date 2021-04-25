@@ -45,7 +45,7 @@
   height: 55px;
   border-radius: 10%;
   position: absolute;
-  left: 48%;
+  left: 47%;
   bottom: 1%;
   overflow: hidden;
   margin: 0%;
@@ -58,6 +58,7 @@
 #shareData button {
   border: none;
   height: 50px;
+  border-radius: 10%;
   background-color: whitesmoke;
 }
 i {
@@ -91,8 +92,10 @@ i {
 
 @keyframes expandButton {
   from {
+    border: 3px solid #560bad;
   }
   to {
+    border: 3px solid #560bad;
     transform: scaleX(4.5);
   }
 }
