@@ -3,57 +3,69 @@ const posts = ["i1.png", "i2.jpg", "i3.jpg", "video1.mp4", "video2.mp4"];
 let postNo = 0; // pointer to next post
 let videoDemon = null;
 let changed = false;
-let touchX=0,touchY=0,touchEndX=0,touchEndY=0;
+let touchX = 0,
+  touchY = 0,
+  touchEndX = 0,
+  touchEndY = 0;
+
+let left="34%";
 
 console.log(navigator.userAgent);
 if (
   navigator.userAgent.includes("Android") ||
   navigator.userAgent.includes("like Mac")
 ) {
-  console.log("mobile-touching event"); 
-  window.addEventListener("touchstart",function(event){
-    touchX=event.touches[0].clientX;
-    touchY=event.touches[0].clientY;
-  },false);
-  window.addEventListener("touchmove",function(event){
-    touchEndX=event.touches[0].clientX;
-    touchEndY=event.touches[0].clientY;
+  console.log("mobile-touching event");
+  window.addEventListener(
+    "touchstart",
+    function (event) {
+      touchX = event.touches[0].clientX;
+      touchY = event.touches[0].clientY;
+    },
+    false
+  );
+  window.addEventListener(
+    "touchmove",
+    function (event) {
+      touchEndX = event.touches[0].clientX;
+      touchEndY = event.touches[0].clientY;
 
-    if(touchEndY==null){
-      return;
-    }
+      if (touchEndX == null) {
+        return;
+      }
 
-    const newY=Math.abs(touchEndY-touchY);
-    swipeDetector(newY);
-  },false);
+      const newX = Math.abs(touchEndX - touchX);
+      swipeDetector(newX);
+    },
+    false
+  );
 } else {
-  console.log("desktop-wheel scrolling"); 
+  console.log("desktop-wheel scrolling");
   //for desktop if wheel is scrolled up-previous post and if scrolled down-next post
-  window.addEventListener("wheel", directionDetector,false);
+  window.addEventListener("wheel", directionDetector, false);
+  left="44%";
 }
 
-function swipeDetector(value){
-  if(value<0){
+function swipeDetector(value) {
+  if (value < 0) {
     console.log("swipe-down");
     postNo <= 0 ? (postNo = posts.length - 1) : postNo--; // decreament pointer to previous post if values is not negative
-    nextPost(document.getElementById("slider-data"));
-  }
-  else{
+    nextPost(document.getElementById("slider-data"), "anmLeft");
+  } else {
     console.log("swipe-up");
     postNo++; // increament pointer to next post
-    nextPost(document.getElementById("slider-data"));
+    nextPost(document.getElementById("slider-data"), "anmRight");
   }
 }
-
 
 function directionDetector(event) {
   console.log(event.wheelDelta);
   if (event.wheelDelta > 0) {
     postNo <= 0 ? (postNo = posts.length - 1) : postNo--; // decreament pointer to previous post if values is not negative
-    nextPost(document.getElementById("slider-data"));
+    nextPost(document.getElementById("slider-data"), "anmLeft");
   } else {
     postNo++; // increament pointer to next post
-    nextPost(document.getElementById("slider-data"));
+    nextPost(document.getElementById("slider-data"), "anmRight");
   }
 }
 
@@ -70,7 +82,7 @@ function setChanged() {
   changed = true;
 }
 
-function nextPost(id) {
+function nextPost(id, classNm) {
   //if previous demon is active then terminate for avoiding errors for non-video content
   if (videoDemon != null) clearInterval(videoDemon);
 
@@ -81,13 +93,30 @@ function nextPost(id) {
   if (newPost.includes(".mp4") || newPost.includes(".mkv")) {
     //getting video type
     let videoType = newPost.includes(".mp4") ? "video/mp4" : "video/mkv";
-    id.innerHTML = `<video id="video" width="100%" height="100%" autoplay controls> 
+    id.innerHTML = `<video id="video" width="100%" height="100%" class="${classNm}" autoplay controls> 
                                <source src=${newPost} type=${videoType}>
                            </video>`;
     videoDemon = setInterval(isVideoEnded, 1000);
   } else {
     // if image
-    id.innerHTML = `<img src=${newPost} alt='post' width='100%' height='100%'>`;
+    id.innerHTML = `<img src=${newPost} alt='post' width='100%' height='100%' class="${classNm}" >`;
   }
   // console.log(e.target);
+}
+
+function expand() {
+  let newStyle = `display:block;animation: expandButton 0.2s ease;animation-fill-mode: forwards;`;
+  let oldStyle = document.getElementById("shareButton");
+  oldStyle.style = newStyle;
+
+  newStyle = `dispaly:inline-block;bottom:1.4%;width:200px;position:fixed;left:${left}`;
+
+  document.getElementById("shareData").style = newStyle;
+  console.log(oldStyle.style);
+}
+
+function closeButton() {
+  document.getElementById("shareButton").style= "";
+  document.getElementById("shareData").style = "display:none;";
+  console.log(document.getElementById("shareButton").style);
 }

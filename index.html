@@ -9,21 +9,37 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-
+    <script
+      src="https://kit.fontawesome.com/d044126c64.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="slider.css" />
     <title>Document</title>
   </head>
   <body>
     <center>
       <!-- <div class="col-auto col-md-12 slider"> -->
-      <div class="col-auto m-0 p-2 slider-data" id="slider-data" >
-        <img src="i1.png" alt="post" width="100%" height="100%" />
+      <div class="col-auto m-0 p-2 slider-data" id="slider-data">
+        <img
+          src="i1.png"
+          alt="post"
+          width="100%"
+          height="100%"
+          style="object-fit: contain"
+        />
+      </div>
+      <div class="share">
+        <button id="shareButton" onclick="expand()"> <i class="fas fa-gem"></i></button>
+        <div id="shareData" class="row" style="display: none;">
+          <button onclick="closeButton()"><i class="fas fa-download"></i></button>
+          <button onclick="closeButton()"><i class="fas fa-share-alt"></i></button>
+          <button onclick="closeButton()"><i class="fas fa-arrow-alt-circle-left"></i></button>
+          <button onclick="closeButton()"><i class="far fa-times-circle" ></i></button>
+        </div>
       </div>
       <!-- </div> -->
     </center>
-    <script type="text/javascript"  src="sliderHandler.js">
-     
-    </script>
+    <script type="text/javascript" src="sliderHandler.js"></script>
 
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
