@@ -8,7 +8,7 @@ let touchX = 0,
   touchEndX = 0,
   touchEndY = 0;
 
-let left="34%";
+let left="29%";
 
 console.log(navigator.userAgent);
 if (
@@ -21,15 +21,11 @@ if (
     function (event) {
       touchX = event.touches[0].clientX;
       touchY = event.touches[0].clientY;
-      event.preventDefault();
     },
     false
   );
-  window.addEventListener("touchmove",function(event){
-    event.preventDefault();
-  },false);
   window.addEventListener(
-    "touchend",
+    "touchmove",
     function (event) {
       touchEndX = event.touches[0].clientX;
       touchEndY = event.touches[0].clientY;
@@ -37,9 +33,8 @@ if (
       if (touchEndX == null) {
         return;
       }
-      const newX = Math.abs(touchEndX - touchX);
+      const newX = touchEndX - touchX;
       swipeDetector(newX);
-      event.preventDefault();
     },
     false
   );
@@ -47,7 +42,7 @@ if (
   console.log("desktop-wheel scrolling");
   //for desktop if wheel is scrolled up-previous post and if scrolled down-next post
   window.addEventListener("wheel", directionDetector, false);
-  left="44%";
+  left="43%";
 }
 
 function swipeDetector(value) {
@@ -113,7 +108,7 @@ function expand() {
   let oldStyle = document.getElementById("shareButton");
   oldStyle.style = newStyle;
 
-  newStyle = `dispaly:inline-block;bottom:1.4%;width:200px;position:fixed;left:${left}`;
+  newStyle = `dispaly:inline-block;bottom:1.4%;width:300px;position:fixed;left:${left}`;
 
   document.getElementById("shareData").style = newStyle;
   console.log(oldStyle.style);
