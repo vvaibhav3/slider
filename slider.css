@@ -5,6 +5,7 @@
   background-color: #333;
 }
 
+
 .slider-data {
   position: absolute;
   width: 100%;
@@ -19,51 +20,24 @@
 
 .anmLeft {
   align-self: center;
-  animation: changeImg1 0.9s ease;
+  animation: changeImg1 0.6s ease;
   object-fit: contain;
 }
 
 .anmRight {
   align-self: center;
-  animation: changeImg2 0.9s ease;
+  animation: changeImg2 0.6s ease;
   object-fit: contain;
 }
 
-.fa-gem{
-    color: #560bad;
-}
-.fa-gem:hover{
-    color: #55a630;
+ .fa-download , .fa-share-alt ,.fa-arrow-alt-circle-left ,.fa-times-circle{
+  color: #ffffff;
 }
 
-.fa-download:hover , .fa-share-alt:hover ,.fa-arrow-alt-circle-left:hover ,.fa-times-circle:hover{
-    color:#55a630;
+.fa-gem:hover, .fa-download:hover , .fa-share-alt:hover ,.fa-arrow-alt-circle-left:hover ,.fa-times-circle:hover{
+    color: #191a1b;
 }
 
-#shareButton {
-  width: 70px;
-  height: 55px;
-  border-radius: 10%;
-  position: absolute;
-  left: 47%;
-  bottom: 1%;
-  overflow: hidden;
-  margin: 0%;
-  padding: 0%;
-  border: 3px solid #560bad;
-}
-#shareButton:hover{
-    border: 3px solid #55a630;
-}
-#shareData button {
-  border: none;
-  height: 50px;
-  border-radius: 10%;
-  background-color: whitesmoke;
-}
-i {
-  padding: 10px;
-}
 @keyframes changeImg1 {
   0% {
     transform: translate(100%, 0%);
@@ -90,12 +64,81 @@ i {
   }
 }
 
-@keyframes expandButton {
-  from {
-    border: 3px solid #560bad;
+.share{
+  position: fixed;
+  right: 0%;
+  bottom: 0%;
+}
+.fa-align-justify , .fa-heart{
+  color: #333;
+}
+.main-btn{
+  border: none;
+  background-color: #fff;
+}
+.fa-heart:hover{
+  color: red;
+}
+.like-btn{
+  position: absolute;
+  left:0%;
+  bottom:0%;
+  border: none;
+  background-color: #fff;
+}
+.like-btn:hover , .main-btn:hover{
+  background-color: #fdc500;
+  border-radius: 12%;
+}
+.shareButtons{
+  display: none;
+  position: absolute;
+  right: 12%;
+  bottom: 77%;
+  width: 60px;
+  padding: 10px;
+  margin:10px;
+}
+
+.shareButtons a{
+  width: 50px;
+  height: auto;
+  padding: 5px;
+  margin: 0px 3px 1px 0px;
+}
+
+.shareButtons a:nth-child(even){
+  animation: loadButton1 0.7s ease-in;
+}
+
+.shareButtons a:nth-child(odd){
+  animation: loadButton2 0.7s ease-in;
+}
+
+.share:hover .shareButtons{
+  display: inline-block;
+}
+
+@keyframes loadButton1{
+  0%{
+    opacity: 0;
   }
-  to {
-    border: 3px solid #560bad;
-    transform: scaleX(4.5);
+  50%{
+    transform: rotate(45deg);
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes loadButton2{
+  0%{
+    opacity: 0;
+  }
+  50%{
+    transform: rotate(-45deg);
+  }
+  100%{
+    opacity: 1;
   }
 }

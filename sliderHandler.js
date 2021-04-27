@@ -8,8 +8,6 @@ let touchX = 0,
   touchEndX = 0,
   touchEndY = 0;
 
-let left="28%";
-
 console.log(navigator.userAgent);
 if (
   navigator.userAgent.includes("Android") ||
@@ -42,7 +40,6 @@ if (
   console.log("desktop-wheel scrolling");
   //for desktop if wheel is scrolled up-previous post and if scrolled down-next post
   window.addEventListener("wheel", directionDetector, false);
-  left="42%";
 }
 
 function swipeDetector(value) {
@@ -103,19 +100,3 @@ function nextPost(id, classNm) {
   // console.log(e.target);
 }
 
-function expand() {
-  let newStyle = `display:block;animation: expandButton 0.2s ease;animation-fill-mode: forwards;border: 3px solid #560bad;`;
-  let oldStyle = document.getElementById("shareButton");
-  oldStyle.style = newStyle;
-
-  newStyle = `dispaly:inline-block;bottom:1.5%;width:300px;position:fixed;left:${left}`;
-
-  document.getElementById("shareData").style = newStyle;
-  console.log(oldStyle.style);
-}
-
-function closeButton() {
-  document.getElementById("shareButton").style= "";
-  document.getElementById("shareData").style = "display:none;";
-  console.log(document.getElementById("shareButton").style);
-}
