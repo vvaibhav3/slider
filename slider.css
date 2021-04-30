@@ -30,12 +30,15 @@
   object-fit: contain;
 }
 
- .fa-download , .fa-share-alt ,.fa-arrow-alt-circle-left ,.fa-times-circle{
+ .fa-align-justify , .fa-heart , .fa-download , .fa-share-alt ,.fa-arrow-alt-circle-left ,.fa-times-circle{
   color: #ffffff;
+  font-size: 23px;
+  padding:2px;
 }
 
 .fa-gem:hover, .fa-download:hover , .fa-share-alt:hover ,.fa-arrow-alt-circle-left:hover ,.fa-times-circle:hover{
     color: #191a1b;
+    cursor: pointer;
 }
 
 @keyframes changeImg1 {
@@ -130,6 +133,7 @@
     opacity: 1;
   }
 }
+
 
 @keyframes loadButton2{
   0%{

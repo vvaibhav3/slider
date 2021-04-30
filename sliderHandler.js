@@ -95,8 +95,13 @@ function nextPost(id, classNm) {
     videoDemon = setInterval(isVideoEnded, 1000);
   } else {
     // if image
-    id.innerHTML = `<img src=${newPost} alt='post' width='100%' height='100%' class="${classNm}" >`;
+    id.innerHTML = `<img src=${newPost} alt='post' width='100%' height='100%' class="${classNm}" download>`;
   }
   // console.log(e.target);
 }
 
+function downloadFile(e){
+  let temp=`<a id="link" href=${posts[postNo % posts.length]} download hidden />`;
+  document.getElementById("temp").innerHTML+=temp;
+  document.getElementById("link").click();
+}
