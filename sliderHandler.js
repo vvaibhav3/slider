@@ -100,8 +100,48 @@ function nextPost(id, classNm) {
   // console.log(e.target);
 }
 
-function downloadFile(e){
-  let temp=`<a id="link" href=${posts[postNo % posts.length]} download hidden />`;
-  document.getElementById("temp").innerHTML+=temp;
+function downloadFile(e) {
+  let temp = `<a id="link" href=${
+    posts[postNo % posts.length]
+  } download hidden />`;
+  document.getElementById("temp").innerHTML += temp;
   document.getElementById("link").click();
+}
+let open = true;
+function showOptions(e) {
+  if (open) {
+    document.getElementById("shareButtons").style = "display:inline-block;";
+    e.style = `transition-delay: 0.5s;transform: rotate(90deg);background-color: #fdc500;
+    border-radius: 12%;width:50px;height:50px; .fa-align-justify{ padding:2px;font-size: 23px;}`;
+    e.innerHTML = `<i class="fas fa-times-circle "></i>`;
+    console.log(e.innerHTML);
+    open = false;
+  } else {
+    document.getElementById("shareButtons").style = "display:none;";
+    e.style = `transition-delay: 0.5s;transform: rotate(180deg);`;
+    e.innerHTML = `<i class="fas fa-align-justify"></i>`;
+    open = true;
+  }
+}
+
+function likebybtn() {
+  document.getElementById("like-btn").style = `background-color: #fdc500;
+  border-radius: 12%;
+  `;
+  let childs=document.getElementById("like-btn").children;
+  childs[0].style.color="red";
+}
+
+function like() {
+  document.getElementById("dbl-click-like").style = `
+  display: inline-block;
+  `;
+  setTimeout(closeLike, 415);
+  likebybtn();
+}
+
+function closeLike() {
+  document.getElementById("dbl-click-like").style = `
+  display: none;
+  `;
 }

@@ -5,7 +5,6 @@
   background-color: #333;
 }
 
-
 .slider-data {
   position: absolute;
   width: 100%;
@@ -30,15 +29,54 @@
   object-fit: contain;
 }
 
- .fa-align-justify , .fa-heart , .fa-download , .fa-share-alt ,.fa-arrow-alt-circle-left ,.fa-times-circle{
+.fa-align-justify,
+.fa-heart,
+.fa-download,
+.fa-share-alt,
+.fa-sign-out-alt,
+.fa-times-circle {
   color: #ffffff;
   font-size: 23px;
-  padding:2px;
+  padding: 2px;
 }
 
-.fa-gem:hover, .fa-download:hover , .fa-share-alt:hover ,.fa-arrow-alt-circle-left:hover ,.fa-times-circle:hover{
-    color: #191a1b;
-    cursor: pointer;
+#dbl-click-like {
+  position: absolute;
+  left: 45%;
+  top: 45%;
+  display: none;
+}
+
+#dbl-click-like .fa-heart {
+  color: red;
+  font-size: 80px;
+  animation: liked 0.3s ease-in;
+}
+.fa-gem:hover,
+.fa-download:hover,
+.fa-share-alt:hover,
+.fa-sign-out-alt:hover,
+.fa-times-circle:hover {
+  color: #191a1b;
+  cursor: pointer;
+}
+
+@keyframes liked {
+  0% {
+    opacity: 0;
+  }
+  50%{
+    opacity: 0.5;
+    transition-delay: 0.5;
+    transform: scale(2);
+    border: 5px solid #F24236;
+    border-radius: 50%;
+  }
+  100% {
+    opacity: 1;
+    border-radius: 25%;
+    display: none;
+  }
 }
 
 @keyframes changeImg1 {
@@ -67,82 +105,78 @@
   }
 }
 
-.share{
+.share {
   position: fixed;
   right: 0%;
   bottom: 0%;
 }
-.fa-align-justify , .fa-heart{
+.fa-align-justify,
+.fa-heart {
   color: #333;
 }
-.main-btn{
+.main-btn {
   border: none;
   background-color: #fff;
 }
-.fa-heart:hover{
+/* .fa-heart:hover {
   color: red;
-}
-.like-btn{
+} */
+#like-btn {
   position: absolute;
-  left:0%;
-  bottom:0%;
+  left: 0%;
+  bottom: 0%;
   border: none;
   background-color: #fff;
 }
-.like-btn:hover , .main-btn:hover{
+/* .like-btn:hover {
   background-color: #fdc500;
   border-radius: 12%;
-}
-.shareButtons{
+} */
+#shareButtons {
   display: none;
   position: absolute;
   right: 12%;
   bottom: 77%;
   width: 60px;
   padding: 10px;
-  margin:10px;
+  margin: 10px;
 }
 
-.shareButtons a{
+#shareButtons a {
   width: 50px;
   height: auto;
   padding: 5px;
   margin: 0px 3px 1px 0px;
 }
 
-.shareButtons a:nth-child(even){
+#shareButtons a:nth-child(even) {
   animation: loadButton1 0.7s ease-in;
 }
 
-.shareButtons a:nth-child(odd){
+#shareButtons a:nth-child(odd) {
   animation: loadButton2 0.7s ease-in;
 }
 
-.share:hover .shareButtons{
-  display: inline-block;
-}
-
-@keyframes loadButton1{
-  0%{
+@keyframes loadButton1 {
+  0% {
     opacity: 0;
   }
-  50%{
+  50% {
     transform: rotate(45deg);
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
 
-
-@keyframes loadButton2{
-  0%{
+@keyframes loadButton2 {
+  0% {
     opacity: 0;
   }
-  50%{
+  50% {
     transform: rotate(-45deg);
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }

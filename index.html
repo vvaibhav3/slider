@@ -19,7 +19,7 @@
   <body>
     <center>
       <!-- <div class="col-auto col-md-12 slider"> -->
-      <div class="col-auto m-0 p-2 slider-data" id="slider-data">
+      <div class="col-auto m-0 p-2 slider-data" id="slider-data" ondblclick="like()">
         <img
           src="i1.png"
           alt="post"
@@ -30,16 +30,20 @@
         />
       </div>
       <div class="row share">
-        <button class="btn btn-secondary mb-1 mr-3 main-btn px-3 py-2"><i class="fas fa-align-justify"></i></button>
-        <div class="shareButtons">
+        <button class="btn btn-secondary mb-1 mr-3 main-btn px-3 py-2" onclick="showOptions(this)"><i class="fas fa-align-justify"></i></button>
+        <div id="shareButtons">
           <a role="button" class="btn btn-success" onclick="downloadFile(event)"><i class="fas fa-download "></i></a>
           <a role="button" class="btn btn-primary"><i class="fas fa-share-alt "></i></a>
           <!-- <a role="button" class="btn btn-warning"><i class="fas fa-arrow-alt-circle-left "></i></a> -->
-          <a role="button" class="btn btn-danger"><i class="far fa-times-circle " ></i></a>
+          <a role="button" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i></a>
         </div>
       </div>
-      <button class="btn btn-secondary mb-1 ml-1 like-btn"><i class="fas fa-heart "></i></i></button>
+      <button class="btn btn-secondary mb-1 ml-1 " id="like-btn" onclick="likebybtn()"><i class="fas fa-heart "></i></i></button>
+      <!-- for download link -->
       <div id="temp"></div>
+
+      <!-- for like -->
+      <div id="dbl-click-like"><i class="fas fa-heart"></i></i></div>
       <!-- <div class="share">
         <button id="shareButton" onclick="expand()"> <i class="fas fa-gem fa-2x"></i></button>
         <div id="shareData" class="row" style="display: none;">
