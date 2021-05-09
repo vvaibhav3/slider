@@ -6,7 +6,9 @@ let changed = false;
 let touchX = 0,
   touchY = 0,
   touchEndX = 0,
-  touchEndY = 0;
+  touchEndY = 0,
+  link="",
+  links=[];
 
 console.log(navigator.userAgent);
 if (
@@ -36,10 +38,22 @@ if (
     },
     false
   );
+
+  
+  links = [
+    `https://api.whatsapp.com/send?text=faltuu :`,
+    `https://api.facebook.com/sharer.php?u=`,
+  ];
+
 } else {
   console.log("desktop-wheel scrolling");
   //for desktop if wheel is scrolled up-previous post and if scrolled down-next post
   window.addEventListener("wheel", directionDetector, false);
+
+  links = [
+    `https://web.whatsapp.com/send?text=faltuu :`,
+    `https://www.facebook.com/sharer.php?u=`,
+  ];
 }
 
 function swipeDetector(value) {
@@ -99,6 +113,9 @@ function nextPost(id, classNm) {
   }
   // console.log(e.target);
 
+  //set link
+  link = document.location.href + posts[postNo % posts.length];
+
   //clear like
   likebybtnclose();
 }
@@ -150,13 +167,7 @@ function closeLike() {
 }
 
 function shareLink(btn) {
-  let link = document.location.href + "/" + posts[postNo % posts.length];
-  let links = [
-    `https://api.whatsapp.com/send?text=faaltu :${
-      posts[postNo % posts.length]
-    } ${link}`,
-    `https://www.facebook.com/sharer.php?u=${link}`,
-  ];
+
 
   switch (btn) {
     case 1:
@@ -178,16 +189,14 @@ function shareLink(btn) {
 
     case 3:
       let btn1=document.querySelector(".whatsappBtn");
-      btn1.setAttribute("href",links[0]);
+      btn1.setAttribute("href",links[0] +" "+ link);
       break;
     
     case 4:
       let btn2=document.querySelector(".facebookBtn");
-      btn2.setAttribute("href",links[1]);
+      btn2.setAttribute("href",links[1]+link);
       break;
     
     
   }
-
-  console.log(link);
 }
