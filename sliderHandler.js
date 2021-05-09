@@ -67,10 +67,10 @@ function directionDetector(event) {
 
 function isVideoEnded() {
   console.log("demon started.." + document.getElementById("video").ended);
-  if (document.getElementById("video").ended || changed) {
+  if (document.getElementById("video").ended) {
     clearInterval(videoDemon);
     postNo++;
-    nextPost(document.getElementById("slider-data"));
+    nextPost(document.getElementById("slider-data"), "anmRight");
   }
 }
 
@@ -89,7 +89,7 @@ function nextPost(id, classNm) {
   if (newPost.includes(".mp4") || newPost.includes(".mkv")) {
     //getting video type
     let videoType = newPost.includes(".mp4") ? "video/mp4" : "video/mkv";
-    id.innerHTML = `<video id="video" width="100%" height="100%" class="${classNm}" autoplay controls> 
+    id.innerHTML = `<video id="video" width="100%" height="100%" class="${classNm}" autoplay> 
                                <source src=${newPost} type=${videoType}>
                            </video>`;
     videoDemon = setInterval(isVideoEnded, 1000);
@@ -98,15 +98,11 @@ function nextPost(id, classNm) {
     id.innerHTML = `<img src=${newPost} alt='post' width='100%' height='100%' class="${classNm}" download>`;
   }
   // console.log(e.target);
+
+  //clear like
+  likebybtnclose();
 }
 
-function downloadFile(e) {
-  let temp = `<a id="link" href=${
-    posts[postNo % posts.length]
-  } download hidden />`;
-  document.getElementById("temp").innerHTML += temp;
-  document.getElementById("link").click();
-}
 let open = true;
 function showOptions(e) {
   if (open) {
@@ -128,8 +124,15 @@ function likebybtn() {
   document.getElementById("like-btn").style = `background-color: #fdc500;
   border-radius: 12%;
   `;
-  let childs=document.getElementById("like-btn").children;
-  childs[0].style.color="red";
+  let childs = document.getElementById("like-btn").children;
+  childs[0].style.color = "red";
+}
+
+function likebybtnclose() {
+  document.getElementById("like-btn").style = `background-color: white;
+  `;
+  let childs = document.getElementById("like-btn").children;
+  childs[0].style.color = "#333";
 }
 
 function like() {
@@ -144,4 +147,47 @@ function closeLike() {
   document.getElementById("dbl-click-like").style = `
   display: none;
   `;
+}
+
+function shareLink(btn) {
+  let link = document.location.href + "/" + posts[postNo % posts.length];
+  let links = [
+    `https://api.whatsapp.com/send?text=faaltu :${
+      posts[postNo % posts.length]
+    } ${link}`,
+    `https://www.facebook.com/sharer.php?u=${link}`,
+  ];
+
+  switch (btn) {
+    case 1:
+      let temp = `<a id="link" href=${
+        posts[postNo % posts.length]
+      } download hidden />`;
+      document.getElementById("temp").innerHTML += temp;
+      document.getElementById("link").click();
+      break;
+
+    case 2:
+      var textArea = document.createElement("textarea");
+      textArea.value = link;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("Copy");
+      textArea.remove();
+      break;
+
+    case 3:
+      let btn1=document.querySelector(".whatsappBtn");
+      btn1.setAttribute("href",links[0]);
+      break;
+    
+    case 4:
+      let btn2=document.querySelector(".facebookBtn");
+      btn2.setAttribute("href",links[1]);
+      break;
+    
+    
+  }
+
+  console.log(link);
 }
